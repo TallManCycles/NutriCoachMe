@@ -1,23 +1,28 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
 import {useState} from 'react';
-import { StyleSheet, Text, View, Button, Modal, Image, Linking, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, Modal, Image, ScrollView, Linking } from 'react-native';
 import {WebView} from 'react-native-webview';
 import MainLogo from './assets/header.jpg';
 
-function Home({ navigation }) { 
-  const onboardingUrl = 'https://form.jotform.com/fatforweightloss/new-client-intake-form';
+function Home() {
+
+const onboardingUrl = 'https://form.jotform.com/fatforweightloss/new-client-intake-form';
+  const checkInUrl = 'https://form.jotform.com/fatforweightloss/weekly-check-in-form'
   const googleSheetURL = 'https://docs.google.com/spreadsheets/d/1SwmuMEGEuiamZ6P36uoR8JVbldfV42JKNpRLJY4_kwk/edit#gid=355762032';
   const contentUrl = 'https://fatforweightloss.thrivecart.com/l/11-nutrition-coaching/';
   const consultationLink = 'https://calendly.com/fatforweightloss/monthly-client-book-in-consultation';
 
   const [onboadingFormVisible, SetOnboardingFormVisible] = useState(false)
   const [filledInOnboarding, SetFilledInOnboarding] = useState(false)
+  const [checkInVisible, SetCheckInVisible] = useState(false)
   const [consultationVisible, SetConsultationVisible] = useState(false)
 
   const openOnboarindFormHandler = () => {
     SetOnboardingFormVisible(true)
+  }
+
+  const openCheckInHandler = () => {
+    SetCheckInVisible(true)
   }
 
   const openProgramHandler = () => {
@@ -31,7 +36,7 @@ function Home({ navigation }) {
   const openConsultationHandler = () => {
     SetConsultationVisible(true)
   }
-
+ 
 
   return (   
     <View style={styles.container}>
@@ -53,14 +58,21 @@ function Home({ navigation }) {
           <WebView source={{uri: onboardingUrl}}></WebView>
       </Modal>
       </View> }
-
-      <View style={styles.viewstyles}>
-      <Button
-        title="Weekly Check In"
-        onPress={() => navigation.navigate('Check In')}
-      />     
-      </View>
       
+      {/* Check Ins */}
+      <View style={styles.viewstyles}>
+        <Text style={styles.text}>CHECK IN: SUNDAY</Text>
+      <Button 
+        title='Weekly Check In' 
+        onPress={openCheckInHandler}/>
+      <Modal
+        visible={checkInVisible}
+        presentationStyle='pageSheet'
+        animationType={'slide'}
+        onRequestClose={() => SetCheckInVisible(false)}>
+          <WebView source={{uri: checkInUrl}}></WebView>
+      </Modal>
+      </View>
       
       {/* My Google Sheet */}
       <View style={styles.viewstyles}>
@@ -88,57 +100,18 @@ function Home({ navigation }) {
         onRequestClose={() => SetConsultationVisible(false)}>
           <WebView source={{uri: consultationLink}}></WebView>
       </Modal>
-
-      <View style={styles.viewstyles}>
-      <Button
-        title="Go to Form"
-        onPress={() => navigation.navigate('Form')}
-      />
-      </View>
       </View>
     </View> 
-  );
-}
-
-function Form({navigation}) {
-  return (
-    <View style={styles.container}>
-      <TextInput placeholder='Name'></TextInput>
-      <Text>This is the form</Text>
-    </View>
-  )
-}
-
-function CheckIn({navigation}) {
-  const checkInUrl = 'https://form.jotform.com/fatforweightloss/weekly-check-in-form'
-  return (
-      <View style={styles.container} >  
-        <WebView source={{uri: checkInUrl}}></WebView>
-      </View>
-  )
-}
-
-const Stack = createNativeStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer style={styles.container}>
-      <Stack.Navigator  initialRouteName="Home">
-        <Stack.Screen  name='Home' component={Home} />
-        <Stack.Screen name='Form' component={Form} />
-        <Stack.Screen name='Check In' component={CheckIn} />
-      </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    marginTop: 50,
+    margin: 25,
     justifyContent: 'flex-start',
     alignContent: 'center',
-    backgroundColor: '#ffffff'
   },
   text: {
     margin: 10,
