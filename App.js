@@ -54,8 +54,11 @@ function Home({ navigation }) {
       </Modal>
       </View> }
 
-      <View style={styles.viewstyles}>
+      {/* Weekly Check In */}
+      <Text style={{alignContent: 'center', textAlign: 'center', marginTop: 15}}>{daysUntilSunday()} days until Check In Day (Sunday)</Text>
+      <View style={styles.viewstyles}>        
       <Button
+      disabled={daysUntilSunday() >= 3}
         title="Weekly Check In"
         onPress={() => navigation.navigate('Check In')}
       />     
@@ -116,6 +119,19 @@ function CheckIn({navigation}) {
         <WebView source={{uri: checkInUrl}}></WebView>
       </View>
   )
+}
+
+function daysUntilSunday() {
+  // Get the current day of the week
+  var currentDay = new Date().getDay();
+
+  // If it's already Sunday, the number of days until Sunday is 7
+  if (currentDay === 0) {
+    return 7;
+  }
+
+  // Otherwise, return the number of days until Sunday
+  return 7 - currentDay;
 }
 
 const Stack = createNativeStackNavigator();
