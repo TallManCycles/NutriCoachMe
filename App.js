@@ -7,6 +7,7 @@ import CheckIn from './Screens/CheckIn';
 import Home from './Screens/Home'
 import AuthScreen from './Screens/AuthScreen'
 import {firebase} from './config'
+import MessagesScreen from './Screens/MessagesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,11 @@ export default function App() {
         <Stack.Screen  name='Home' component={Home} />
         <Stack.Screen name='Form' component={Form} />
         <Stack.Screen name='Check In' component={CheckIn} />
+        <Stack.Screen name="Messages Screen" options={() => ({
+          headerBackVisible: false,
+        })}>
+         {props => <MessagesScreen {...props} user={user}/>}
+        </Stack.Screen>
         </>
         :
         <Stack.Screen name="Auth" component={AuthScreen} options={() => ({

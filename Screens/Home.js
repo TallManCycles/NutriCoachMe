@@ -108,6 +108,13 @@ function Home({ navigation }) {
 
         <View style={styles.viewstyles}>
         <Button
+          title="Messages"
+          onPress={() => navigation.navigate('Messages Screen')}
+        />
+        </View>
+
+        <View style={styles.viewstyles}>
+        <Button
           title="Sign Out"
           onPress={userSignOut}
         />
