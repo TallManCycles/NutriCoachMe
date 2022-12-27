@@ -117,6 +117,7 @@ function Home({ navigation }) {
     container: {
       flex: 1,
       padding: 20,
+      marginTop: 20,
       justifyContent: 'flex-start',
       alignContent: 'center',
       backgroundColor: '#ffffff'
