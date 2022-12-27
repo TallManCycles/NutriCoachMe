@@ -55,8 +55,6 @@ const userSignin = async () => {
       return newReg
   
     }catch(err){
-      console.log(err)
-      console.log(email)
       alert('Email or Password incorrect');
     }
   }
@@ -78,7 +76,7 @@ const userSignin = async () => {
         }]}>
         {signin ?
         <>
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
                 <Text style={styles.text_header}>Sign up</Text>
                 <Text style={styles.headerTitle}>Input your Email address and Password in the form below to Register.</Text>
             </View>
@@ -149,7 +147,7 @@ const userSignin = async () => {
                     <View style={{marginTop: 10, alignItems: 'center'}}>
                     <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Already have an account? Sign in</Text></TouchableOpacity>
                     </View> 
-                </View>
+                </View> */}
                 </>
                 :
                 <>
@@ -208,7 +206,7 @@ const userSignin = async () => {
 
                     </TouchableOpacity>
                     <View style={{marginTop: 10, alignItems: 'center'}}>
-                    <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Are you new here? Sign up</Text></TouchableOpacity>
+                    {/* <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Are you new here? Sign up</Text></TouchableOpacity> */}
                     </View> 
                 </View>
 
