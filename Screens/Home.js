@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import { StyleSheet, Text, View, Button, Modal, Image, Linking, TextInput } from 'react-native';
 import {WebView} from 'react-native-webview';
-import MainLogo from './assets/header.jpg';
+import MainLogo from '../assets/header.jpg';
 
 function Home({ navigation }) { 
     const onboardingUrl = 'https://form.jotform.com/fatforweightloss/new-client-intake-form';
@@ -93,6 +93,13 @@ function Home({ navigation }) {
         <Button
           title="Go to Form"
           onPress={() => navigation.navigate('Form')}
+        />
+        </View>
+
+        <View style={styles.viewstyles}>
+        <Button
+          title="Auth Screen"
+          onPress={() => navigation.navigate('AuthScreen')}
         />
         </View>
         </View>

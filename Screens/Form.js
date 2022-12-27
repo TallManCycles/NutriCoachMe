@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet,View, Text, TextInput, FlatList } from 'react-native';
-import {firebase} from './config'
+import {firebase} from '../config'
 
 function Form({navigation}) {
   const toDoRef = firebase.firestore().collection('todo');
   const [todo, setToDo] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     toDoRef
     .onSnapshot(querySnapShot => {
       const toDos = []
@@ -18,7 +20,7 @@ function Form({navigation}) {
         })
       })
       setToDo(toDos)
-      console.log(todo[0])
+      setIsLoading(false)
     })
   }, [])
 
@@ -34,12 +36,11 @@ function Form({navigation}) {
 
     return (
       <View style={styles.container}>
-        <Text>Hello</Text>
-        <FlatList
-        data={todo}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+          <FlatList
+          data={todo}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          />
       </View>
     )
   }
@@ -53,7 +54,7 @@ function Form({navigation}) {
       alignContent: 'center',
       backgroundColor: '#ffffff'
     }, item: {
-      backgroundColor: '#f9c2ff',
+      backgroundColor: '#cccccc',
       padding: 20,
       marginVertical: 8,
       marginHorizontal: 16,
