@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { StyleSheet, Text, View, Button, Modal, Image, Linking, TextInput } from 'react-native';
 import {WebView} from 'react-native-webview';
 import MainLogo from '../assets/header.jpg';
+import {firebase} from '../config'
 
 function Home({ navigation }) { 
     const onboardingUrl = 'https://form.jotform.com/fatforweightloss/new-client-intake-form';
@@ -28,6 +29,15 @@ function Home({ navigation }) {
   
     const openConsultationHandler = () => {
       SetConsultationVisible(true)
+    }
+
+    const userSignOut = async () => {
+      firebase.auth().signOut().then(function() {
+        console.log('Signed Out');
+      }, function(error) {
+        console.error('Sign Out Error', error);
+      });
+
     }
   
   
@@ -98,8 +108,8 @@ function Home({ navigation }) {
 
         <View style={styles.viewstyles}>
         <Button
-          title="Auth Screen"
-          onPress={() => navigation.navigate('AuthScreen')}
+          title="Sign Out"
+          onPress={userSignOut}
         />
         </View>
         </View>
