@@ -59,6 +59,18 @@ const userSignin = async () => {
     }
   }
 
+  const dummySignIn = async () => {
+    try{
+      const newReg = await firebase.auth().signInWithEmailAndPassword("aaronday@live.com.au","123456")
+  
+      console.log('Sign in done')
+      return newReg
+  
+    }catch(err){
+      alert('Email or Password incorrect');
+    }
+  }
+
 
     const signInSwitch = () => {
         setSignin(!signin)
@@ -203,6 +215,23 @@ const userSignin = async () => {
                         <Text style={[styles.textSign, {
                             color: '#009387'
                         }]}> Sign in </Text>
+
+                    </TouchableOpacity>
+
+                    {/* Dummy Sign In */}
+
+                    <TouchableOpacity
+                        onPress={()=>dummySignIn()}
+                        style={[styles.signIn, {
+                            borderColor: '#009387',
+                            borderWidth: 1,
+                            marginTop: 15,
+                        }]}
+                    >
+
+                        <Text style={[styles.textSign, {
+                            color: '#009387'
+                        }]}> Test Sign in </Text>
 
                     </TouchableOpacity>
                     <View style={{marginTop: 10, alignItems: 'center'}}>

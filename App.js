@@ -8,6 +8,7 @@ import Home from './Screens/Home'
 import AuthScreen from './Screens/AuthScreen'
 import {firebase} from './config'
 import MessagesScreen from './Screens/MessagesScreen';
+import { getData, storeData } from './db';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,12 +17,13 @@ export default function App() {
   const [user, setUser] = useState('');
 
   useEffect(()=> {
-    const userCheck = firebase.auth().onAuthStateChanged(userExist=>{
+      const userCheck = firebase.auth().onAuthStateChanged(userExist=>{
           if(userExist)
             setUser(userExist)
-          else setUser("")
-        })
-    return () => {
+          else 
+            setUser("")
+      })
+      return () => {
       userCheck()
       console.log(user);
     }
