@@ -8,7 +8,6 @@ import Home from './Screens/Home'
 import AuthScreen from './Screens/AuthScreen'
 import {firebase} from './config'
 import MessagesScreen from './Screens/MessagesScreen';
-import { getData, storeData } from './db';
 
 const Stack = createNativeStackNavigator();
 

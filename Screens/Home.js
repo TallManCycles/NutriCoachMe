@@ -101,7 +101,7 @@ function Home({ navigation }) {
   
         <View style={styles.viewstyles}>
         <Button
-          title="Go to Form"
+          title="Exercises"
           onPress={() => navigation.navigate('Form')}
         />
         </View>

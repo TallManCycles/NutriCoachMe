@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet,View, Text, TextInput, FlatList } from 'react-native';
+import {WebView} from 'react-native-webview';
 import {firebase} from '../config'
 
 function Form({navigation}) {
-  const toDoRef = firebase.firestore().collection('todo');
+  const toDoRef = firebase.firestore().collection('exercises');
   const [todo, setToDo] = useState([]);
   const [isloading, setIsLoading] = useState(false);
+
+  const getDateFromTimestamp = (object) => {
+    return object.toDate().toDateString()
+    
+  }
 
   useEffect(() => {
     setIsLoading(true)
@@ -13,25 +19,28 @@ function Form({navigation}) {
     .onSnapshot(querySnapShot => {
       const toDos = []
       querySnapShot.forEach((doc) => {
-        const {title} = doc.data();
+        const {name,schedule} = doc.data();
         toDos.push({
           id: doc.id,
-          title,
+          name,
+          schedule
         })
       })
       setToDo(toDos)
       setIsLoading(false)
+      console.log(toDos)
     })
   }, [])
 
-  const Item = ({ title }) => (
+  const Item = ({ name,schedule }) => (
     <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{name}</Text>
+      <Text style={styles.title}>{schedule}</Text>
     </View>
   );
 
   const renderItem = ({ item }) => (
-    <Item title={item.title} />
+    <Item name={item.name} schedule={getDateFromTimestamp(item.schedule)} />
   );
 
     return (
@@ -54,10 +63,14 @@ function Form({navigation}) {
       alignContent: 'center',
       backgroundColor: '#ffffff'
     }, item: {
-      backgroundColor: '#cccccc',
+      backgroundColor: '#0e7fcf',
+      color: '#ffffff',
       padding: 20,
       marginVertical: 8,
       marginHorizontal: 16,
+      borderRadius: 5
+    }, title: {
+      color: '#ffffff'      
     }
   });
 
