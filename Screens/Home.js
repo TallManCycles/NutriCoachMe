@@ -115,6 +115,17 @@ function Home({ navigation }) {
 
         <View style={styles.viewstyles}>
         <Button
+          title="ChatScreen"
+          onPress={() => navigation.navigate('Chat Screen')}
+          // onPress={() => navigation.navigate(
+          //   'ChatScreen',
+          //   { user },
+          // )}
+        />
+        </View>
+
+        <View style={styles.viewstyles}>
+        <Button
           title="Sign Out"
           onPress={userSignOut}
         />

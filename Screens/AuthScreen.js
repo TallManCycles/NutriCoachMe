@@ -59,17 +59,17 @@ const userSignin = async () => {
     }
   }
 
-  const dummySignIn = async () => {
-    try{
-      const newReg = await firebase.auth().signInWithEmailAndPassword("aaronday@live.com.au","123456")
+  // const dummySignIn = async () => {
+  //   try{
+  //     const newReg = await firebase.auth().signInWithEmailAndPassword("aaronday@live.com.au","123456")
   
-      console.log('Sign in done')
-      return newReg
+  //     console.log('Sign in done')
+  //     return newReg
   
-    }catch(err){
-      alert('Email or Password incorrect');
-    }
-  }
+  //   }catch(err){
+  //     alert('Email or Password incorrect');
+  //   }
+  // }
 
 
     const signInSwitch = () => {
@@ -88,7 +88,7 @@ const userSignin = async () => {
         }]}>
         {signin ?
         <>
-            {/* <View style={styles.header}>
+            <View style={styles.header}>
                 <Text style={styles.text_header}>Sign up</Text>
                 <Text style={styles.headerTitle}>Input your Email address and Password in the form below to Register.</Text>
             </View>
@@ -159,7 +159,7 @@ const userSignin = async () => {
                     <View style={{marginTop: 10, alignItems: 'center'}}>
                     <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Already have an account? Sign in</Text></TouchableOpacity>
                     </View> 
-                </View> */}
+                </View>
                 </>
                 :
                 <>
@@ -218,7 +218,7 @@ const userSignin = async () => {
 
                     </TouchableOpacity>
 
-                    {/* Dummy Sign In */}
+                    {/* Dummy Sign In
 
                     <TouchableOpacity
                         onPress={()=>dummySignIn()}
@@ -231,11 +231,11 @@ const userSignin = async () => {
 
                         <Text style={[styles.textSign, {
                             color: '#009387'
-                        }]}> Test Sign in </Text>
+                        }]}> Test Sign in </Text> */}
 
-                    </TouchableOpacity>
+                    {/* </TouchableOpacity> */}
                     <View style={{marginTop: 10, alignItems: 'center'}}>
-                    {/* <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Are you new here? Sign up</Text></TouchableOpacity> */}
+                    <TouchableOpacity onPress={()=>signInSwitch()}><Text style={styles.text_footer}>Are you new here? Sign up</Text></TouchableOpacity>
                     </View> 
                 </View>
 
@@ -300,7 +300,7 @@ container: {
    },
    textInput: { 
      flex: 1,
-     marginTop: Platform.OS === 'ios' ? 0 : -12,
+    //  marginTop: Platform.OS === 'ios' ? 0 : -12,
      paddingLeft: 10,
      color: '#05375a',
    },

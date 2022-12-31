@@ -22,7 +22,6 @@ import {firebase} from '../config'
   const getUsers = async () => {
     try {
         const querySanp = await firebase.firestore().collection('users').where('uid','!=',user.uid).get()
-        // const querySanp = await firebase.firestore().collection('users').get()
         const allUsers = querySanp.docs.map(docSnap=>docSnap.data())
         setUsers(allUsers)  
         console.log(allUsers)
@@ -41,14 +40,13 @@ useEffect(()=>{
     
      <SafeAreaView >
        <StatusBar />
-       <Text>Test</Text>
        <View>
           <View style={styles.Contain}>
               <FlatList
                   data={users}
                   keyExtractor={(item)=>item.uid}
                   renderItem={({item}) => (
-                  <TouchableOpacity onPress={() => navigation.navigate('Chats', {name: item.name, uid: item.uid})} >
+                  <TouchableOpacity onPress={() => navigation.navigate('Chat Screen', user={name: item.name, uid: item.uid})} >
                       <View style={styles.card} >
                           <Image style={styles.userImageST} source={{uri: 'https://placeimg.com/140/140/any'}} />
                         <View style={styles.textArea}>
